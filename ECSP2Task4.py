@@ -7,7 +7,6 @@ def decode(fn="BinOutput.txt"):
     fn (str): The name of the file to read the binary codes from. Defaults to 'BinOutput.txt'.
     
     Returns:
-    None
     """
     try:
         # Open the file that contains the binary data (default file is 'BinOutput.txt')
