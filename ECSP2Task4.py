@@ -3,9 +3,6 @@ def decode(fn="BinOutput.txt"):
     Function to decode a file containing binary codes and convert them into characters.
     The decoded characters are written to a file named 'TextOutput.txt'.
     
-    Args:
-    fn (str): The name of the file to read the binary codes from. Defaults to 'BinOutput.txt'.
-    
     Returns:
     """
     try:
