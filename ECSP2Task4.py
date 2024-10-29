@@ -68,13 +68,17 @@ def decode(fn="BinOutput.txt"):
 
         # Step 5: Decode binary data using binsD.
         decoded_text = ""
-        buffer = ""  # Buffer for accumulating bits
-
-        for bit in binary_data:
-            buffer += bit  # Accumulate bits
-            if buffer in binsD:  # Check if buffer matches a code
-                decoded_text += binsD[buffer]  # Add matched character
-                buffer = ""  # Reset buffer
+        
+        while (binary_data != ""):
+            if (binary_data[0] == "0"):
+                b = binary_data[0:5]
+                binary_data = binary_data[5:]
+            else:
+                b = binary_data[0:7]
+                binary_data = binary_data[7:]
+            t = binsD.get(b)
+            if t == None: t = ""
+            decoded_text = decoded_text + t
 
         # Step 6: Write decoded characters to output file.
         with open("TextOutput.txt", 'w') as text_file:
