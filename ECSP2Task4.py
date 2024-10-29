@@ -17,6 +17,46 @@ for i in range(len(chars)):
     binsD[bins[i]] = chars[i]  # Map binary to character
 
 # Step 3: Function to decode binary file with variable-length codes.
+# takes a file and a place to put the file as input and 
+# writes the encoded version of that file as output
+strings = list
+for char in chars :
+    if len(char) > 1 :
+        strings.append(char)
+
+def encodeFile(inputFilePath, outputFilePath):
+    try:
+        with open(inputFilePath, 'r') as inputFile:
+            text = inputFile.read()
+        
+        encodedText = ""
+        i = 0
+        while i < len(text):
+            # string check
+            checkSingles = True
+            for string in strings:
+                if text[i:i+len(string)] == string:
+                    encodedText += bins[chars.index(string)]
+                    i += len(string)
+                    checkSingles = False
+                    break
+            
+            if checkSingles:
+                # single so grab from dict
+                char = text[i]
+                encodedText += bins[chars.index(char)] 
+                # what if not in dict?
+                i += 1
+
+        with open(outputFilePath, 'w') as outputFile:
+            outputFile.write(encodedText)
+
+        print(f"encoded '{inputFilePath}' and saved it to '{outputFilePath}'.")
+    
+    except FileNotFoundError:
+        print(f"'{inputFilePath}' doesnt exist")
+
+
 def decode(fn="BinOutput.txt"):
     """
     Decode file with variable-length binary codes to characters.
